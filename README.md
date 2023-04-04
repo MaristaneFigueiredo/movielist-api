@@ -20,7 +20,7 @@ Back-end para organização de filmes em plataformas de streaming.
   3. Criar um banco de dados no PostgreSQL com o nome de "movielist" 
 
   4. Restaure o arquivo dump.sql que segue no projeto. 
-      Este arquivo criará a entidade e todos os recursos necessários para o funcionamento do banco
+      Este arquivo criará as entidades e todos os recursos necessários para o funcionamento do banco
 
   5. Configure o `.env` usando o arquivo `.env.example`
 
