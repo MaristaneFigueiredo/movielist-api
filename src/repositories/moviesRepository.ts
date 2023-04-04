@@ -1,6 +1,7 @@
 import connectionDb from "../config/database.js"
+import { MovieEntity } from "../protocols/movies.js"
 
-async function createMovies(req: Request, res: Response) {
+async function createMovies({name, platformId, genreId}:MovieEntity) {
     
 }
 
