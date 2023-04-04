@@ -1,7 +1,7 @@
 CREATE TABLE "movies" (
 	"id" serial NOT NULL,
 	"name" varchar(50) NOT NULL,
-	"status" varchar(50) NOT NULL,
+	"watched" boolean NOT NULL DEFAULT false,
 	"createdAt" TIMESTAMP NOT NULL DEFAULT 'now()',
 	"updateAt" TIMESTAMP NOT NULL,
 	"plataformId" integer NOT NULL,
