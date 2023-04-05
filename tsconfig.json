@@ -2,7 +2,7 @@
     // objeto compilerOptions - objeto referente a compilação
     "compilerOptions": {
         "outDir": "dist", // arquivos js ficarão nesta pasta
-        "esModuleInterop": true, // entender sistemas diferentes de importação que existe no js. 
+        "esModuleInterop": true, // entender diferentes tipos de importação que existe no js. 
         //Qdo é "true" garatimos compatibilidade entre várias libs
         "module": "es6", // especificar o padrão do module
 

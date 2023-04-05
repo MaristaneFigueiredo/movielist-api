@@ -14,8 +14,8 @@ export type MovieEntity = {
 
 export type MovieResponse = {
   id?: number;
-  name: string;
-  whatched: boolean;
+  name?: string;
+  whatched?: boolean;
   plataformId?: number;
   plataformName?: string;
   genreId?: number;

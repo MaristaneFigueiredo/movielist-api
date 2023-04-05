@@ -1,15 +1,18 @@
-import moviesRepository from "../repositories/moviesRepository.js"
-import { MovieEntity } from "../protocols/movies.js"
-
-
-async function createMovies({name, platformId, genreId}: MovieEntity) {
-    await moviesRepository.createMovies ({name, platformId, genreId})
-    
 import moviesRepository from "../repositories/moviesRepository.js";
 import { MovieEntity } from "../protocols/movies.js";
+import genericErros from "../errors/genericErros.js";
 
-async function createMovies({ name, plataformId, genreId }: MovieEntity) {
-  await moviesRepository.createMovies({ name, plataformId, genreId });
+async function movieExistPlataform({name, plataformId}) : Promise<void> {    
+
+   const movieExistPlataform = await moviesRepository.movieExistPlataform ({name, plataformId} )      
+   if(movieExistPlataform) {        
+         throw genericErros.conflitctError("Movie already exists for this plataform")            
+   }        
+}
+
+
+async function createMovies({ name, plataformId, genreId }: MovieEntity) : Promise<void> {
+    await moviesRepository.createMovies({ name, plataformId, genreId });   
 }
 
 async function getMovies() {}
@@ -25,4 +28,5 @@ export default {
   updateWatchedMovie,
   deleteMovies,
   updateMovie,
-};
+  movieExistPlataform
+}

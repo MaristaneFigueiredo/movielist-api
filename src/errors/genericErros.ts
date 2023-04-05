@@ -1,13 +1,14 @@
 import {messageError} from "../protocols/movies.js"
 
-function conflitctError(message:string): messageError {
-    return {
+function conflitctError(message:string) : messageError {  
+    return {      
         name:"ConflictError",
         message,
     }
+
 }
 
-function duplicatedEmailError(email:string): messageError {
+function duplicatedEmailError(email:string) : messageError {
     return {
         name:"DuplicatedEmailError",
         message: "There is already an user with given email",

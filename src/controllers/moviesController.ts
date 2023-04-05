@@ -3,18 +3,18 @@ import { MovieEntity } from "../protocols/movies.js"
 import moviesService from "../services/moviesService.js"
 import httpStatus from "http-status"
 
-async function createMovies(req: Request, res: Response, next:NextFunction) {
-    
-    const {name, platformId, genreId}: MovieEntity = req.body as MovieEntity
-
-
-    console.log('controller {name, platformId, genreId}', {name, platformId, genreId})
+async function createMovies(req: Request, res: Response, next:NextFunction) {   
+ 
+    const {name, plataformId, genreId} = req.body as MovieEntity      
     
     try {
-        await moviesService.createMovies ({name, platformId, genreId})
-        return res.sendStatus(httpStatus.OK)
+        await moviesService.movieExistPlataform({ name, plataformId})
         
-    } catch (error) {
+        await moviesService.createMovies ({name, plataformId, genreId})
+        
+        return res.sendStatus(httpStatus.CREATED)        
+        
+    } catch (error) {        
         next(error)
     }
     
