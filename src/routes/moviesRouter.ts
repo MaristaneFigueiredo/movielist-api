@@ -1,10 +1,12 @@
 import { Router } from "express";
 import moviesController from "../controllers/moviesController.js"
+import validationSchema from "../middlewares/schemaValidationMiddleware.js";
+import {movieSchema} from "../schemas/movieSchema.js"
 
 const moviesRouter = Router()
 
 moviesRouter
-    .post('/', moviesController.createMovies)
+    .post('/',  validationSchema(movieSchema),  moviesController.createMovies)
      .get('/', moviesController.getMovies)
      .get('/movies/countplatforms', moviesController.countMoviesByplatform )
      .patch('/movie-assistido/:id', moviesController.updateWatchedMovie)  

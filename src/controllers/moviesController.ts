@@ -9,7 +9,7 @@ async function createMovies(req: Request, res: Response, next:NextFunction) {
     
     try {
         await moviesService.movieExistPlataform({ name, plataformId})
-        
+
         await moviesService.createMovies ({name, plataformId, genreId})
         
         return res.sendStatus(httpStatus.CREATED)        
@@ -20,7 +20,13 @@ async function createMovies(req: Request, res: Response, next:NextFunction) {
     
 }
 
-async function getMovies(req: Request, res: Response) {
+async function getMovies(req: Request, res: Response, next:NextFunction) {
+    try {
+        const movies = await moviesService.getMovies();
+        res.send(movies);
+      } catch (error) {
+        next(error);
+      }
     
 }
 async function countMoviesByplatform(

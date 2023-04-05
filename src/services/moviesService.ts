@@ -1,5 +1,6 @@
+//import { QueryResult } from "pg";
 import moviesRepository from "../repositories/moviesRepository.js";
-import { MovieEntity } from "../protocols/movies.js";
+import { MovieEntity, MovieResponse } from "../protocols/movies.js";
 import genericErros from "../errors/genericErros.js";
 
 async function movieExistPlataform({name, plataformId}) : Promise<void> {    
@@ -15,7 +16,11 @@ async function createMovies({ name, plataformId, genreId }: MovieEntity) : Promi
     await moviesRepository.createMovies({ name, plataformId, genreId });   
 }
 
-async function getMovies() {}
+async function getMovies()  {
+    const movies = await moviesRepository.getMovies();
+    
+    return movies
+}
 async function countMoviesByplatform() {}
 async function updateWatchedMovie() {}
 async function deleteMovies() {}
