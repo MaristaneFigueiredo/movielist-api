@@ -30,7 +30,7 @@ async function movieExistPlataform({name, plataformId}:MovieResponse) {
 async function getMovies()  { 
 
     const query = `        
-        SELECT m.id, m.name as movie, m.whatched, p.name, g.name
+        SELECT m.id, m.name as movie, m.whatched, p.name as plataform, g.name as genre
         FROM movies m 
         INNER JOIN plataforms p ON m."plataformId" = p.id
         INNER JOIN genres g ON m."genreId" = g.id
