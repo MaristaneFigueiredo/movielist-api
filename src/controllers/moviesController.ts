@@ -42,18 +42,7 @@ async function countMoviesBypPlatform(
     next(error);
   }
 }
-async function updateWatchedMovie(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    await moviesService.updateWatchedMovie();
-    res.sendStatus(httpStatus.OK);
-  } catch (error) {
-    next(error);
-  }
-}
+
 async function deleteMovie(req: Request, res: Response, next: NextFunction) {
   
   const id = Number(req.params.id)
@@ -68,20 +57,34 @@ async function deleteMovie(req: Request, res: Response, next: NextFunction) {
     next(error);
   }
 }
-async function updateMovie(req: Request, res: Response, next: NextFunction) {
-  try {
-    await moviesService.updateMovie();
+
+async function updateWatchedMovie(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+
+  const id = Number(req.params.id)
+  
+  const whatchedMovie = req.body.whatched as boolean        
+       
+
+  try {    
+
+    await moviesService.movieExistById(id)    
+
+    await moviesService.updateWatchedMovie(whatchedMovie, id);
     res.sendStatus(httpStatus.OK);
   } catch (error) {
     next(error);
   }
 }
 
+
 export default {
   createMovies,
   getMovies,
   countMoviesBypPlatform,
   updateWatchedMovie,
-  deleteMovie,
-  updateMovie,
+  deleteMovie  
 };

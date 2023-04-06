@@ -10,8 +10,7 @@ moviesRouter
      .get('/', moviesController.getMovies)
      .get('/countplatforms', moviesController.countMoviesBypPlatform )
      .delete('/:id', moviesController.deleteMovie)
-     .patch('/movie-assistido/:id', moviesController.updateWatchedMovie)       
-     .put('/:id', moviesController.updateMovie)
+     .patch('/whatched/:id', moviesController.updateWatchedMovie)            
     
 
 

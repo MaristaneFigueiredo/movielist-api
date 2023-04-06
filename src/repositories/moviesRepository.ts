@@ -63,9 +63,17 @@ async function deleteMovie(id:number) : Promise<void> {
 
 }
 
-async function updateWatchedMovie() {}
+async function updateWatchedMovie(whatchedMovie:boolean, id:number): Promise<void>  { 
+  
+  const query = `
+        UPDATE movies SET whatched = $1 WHERE id = $2      
+    `;
+    
+    await connectionDb.query(query, [whatchedMovie, id]); 
 
-async function updateMovie() {}
+}
+
+
 
 export default {
   createMovies,
@@ -73,7 +81,6 @@ export default {
   countMoviesBypPlatform,
   updateWatchedMovie,
   deleteMovie,
-  updateMovie,
   movieExistPlataform,
   movieExistById
 };
