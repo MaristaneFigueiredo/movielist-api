@@ -1,0 +1,42 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "movielist",
+    "dateExported": "2023-04-05T19:17:24.500Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "4b667ee0-d67b-48ba-94dd-252eb2bcea64",
+            "colId": "c569188d-d656-4c81-8bbf-eb1faa4eb9fe",
+            "containerId": "",
+            "name": "create movie",
+            "url": "http://localhost:4000/movies",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-04-05T13:44:48.401Z",
+            "modified": "2023-04-05T18:03:27.712Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"segundo tempo\",\n  \"plataformId\": 2,\n  \"genreId\": 2\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "da17a827-f815-43ce-9a03-65295cdcf46f",
+            "colId": "c569188d-d656-4c81-8bbf-eb1faa4eb9fe",
+            "containerId": "",
+            "name": "get movies",
+            "url": "http://localhost:4000/movies",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-04-05T18:25:30.754Z",
+            "modified": "2023-04-05T18:25:40.143Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
