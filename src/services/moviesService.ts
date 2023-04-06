@@ -1,11 +1,15 @@
-//import { QueryResult } from "pg";
 import moviesRepository from "../repositories/moviesRepository.js";
 import { MovieEntity, MovieResponse } from "../protocols/movies.js";
 import genericErros from "../errors/genericErros.js";
 
-async function movieExistPlataform({name, plataformId}) : Promise<void> {    
 
-   const movieExistPlataform = await moviesRepository.movieExistPlataform ({name, plataformId} )      
+async function movieExistPlataform({name, plataformId}:MovieResponse)  {    
+   
+   const {rows : movies} = await moviesRepository.movieExistPlataform ({name, plataformId} )      
+   
+   const [movieExistPlataform] = movies
+   console.log('movieExistPlataform', movieExistPlataform)
+
    if(movieExistPlataform) {        
          throw genericErros.conflitctError("Movie already exists for this plataform")            
    }        
@@ -21,6 +25,7 @@ async function getMovies()  {
     
     return movies
 }
+
 async function countMoviesByplatform() {}
 async function updateWatchedMovie() {}
 async function deleteMovies() {}

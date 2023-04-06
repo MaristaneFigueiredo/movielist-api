@@ -1,6 +1,6 @@
 import { QueryResult } from "pg";
 import connectionDb from "../config/database.js";
-import { MovieEntity, MovieResponse } from "../protocols/movies.js";
+import { MovieEntity, MovieResponse} from "../protocols/movies.js";
 
 
 async function createMovies({ name, plataformId, genreId,}: MovieEntity) : Promise<void>{
@@ -13,21 +13,18 @@ async function createMovies({ name, plataformId, genreId,}: MovieEntity) : Promi
   
 }
 
-//: QueryResult<MovieResponse> ==== : Promise<QueryResult<MovieResponse>>
-async function movieExistPlataform({name, plataformId}:MovieResponse) {
+
+async function movieExistPlataform({name, plataformId}:MovieResponse) : Promise<QueryResult<MovieResponse>> {
     
     const query = `
         SELECT * FROM movies WHERE name = $1 AND "plataformId" = $2       
-    `;
-   
-    const {rows : movies} = await connectionDb.query(query, [name, plataformId]);
-    const [movie] = movies
-    
-    return movie
+    `;   
+
+    return await connectionDb.query(query, [name, plataformId]);
 }
 
-//: Promise<QueryResult<MovieResponse>>
-async function getMovies()  { 
+
+async function getMovies(): Promise<QueryResult<MovieResponse>>   { 
 
     const query = `        
         SELECT m.id, m.name as movie, m.whatched, p.name as plataform, g.name as genre
@@ -35,15 +32,9 @@ async function getMovies()  {
         INNER JOIN plataforms p ON m."plataformId" = p.id
         INNER JOIN genres g ON m."genreId" = g.id
     `; 
-
-    //console.log('query',query)
-
-    const {rows} = await connectionDb.query(query)
-    //console.log('rows', rows)
-    const movies = rows
-    //console.log('movies', movies)
-    return movies
+    return await connectionDb.query(query)
 }
+
 async function countMoviesByplatform() {}
 async function updateWatchedMovie() {}
 async function deleteMovies() {}

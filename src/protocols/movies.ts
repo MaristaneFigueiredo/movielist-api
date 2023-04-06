@@ -21,3 +21,5 @@ export type MovieResponse = {
   genreId?: number;
   genreName?: string;
 };
+
+
