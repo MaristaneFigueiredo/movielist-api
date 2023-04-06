@@ -30,13 +30,13 @@ async function getMovies(req: Request, res: Response, next:NextFunction) {
       }
     
 }
-async function countMoviesByplatform(
+async function countMoviesBypPlatform(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const movies = await moviesService.countMoviesByplatform();
+    const {rows : movies}  = await moviesService.countMoviesBypPlatform();
     res.send(movies);
   } catch (error) {
     next(error);
@@ -74,7 +74,7 @@ async function updateMovie(req: Request, res: Response, next: NextFunction) {
 export default {
   createMovies,
   getMovies,
-  countMoviesByplatform,
+  countMoviesBypPlatform,
   updateWatchedMovie,
   deleteMovies,
   updateMovie,

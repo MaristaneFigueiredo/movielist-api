@@ -8,7 +8,7 @@ const moviesRouter = Router()
 moviesRouter
     .post('/',  validationSchema(movieSchema),  moviesController.createMovies)
      .get('/', moviesController.getMovies)
-     .get('/movies/countplatforms', moviesController.countMoviesByplatform )
+     .get('/countplatforms', moviesController.countMoviesBypPlatform )
      .patch('/movie-assistido/:id', moviesController.updateWatchedMovie)  
      .delete('/:id', moviesController.deleteMovies)
      .put('/:id', moviesController.updateMovie)

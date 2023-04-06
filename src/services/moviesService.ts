@@ -26,7 +26,12 @@ async function getMovies()  {
     return movies
 }
 
-async function countMoviesByplatform() {}
+async function countMoviesBypPlatform() {
+  
+  const movies = await moviesRepository.countMoviesBypPlatform();
+    
+  return movies
+}
 async function updateWatchedMovie() {}
 async function deleteMovies() {}
 async function updateMovie() {}
@@ -34,7 +39,7 @@ async function updateMovie() {}
 export default {
   createMovies,
   getMovies,
-  countMoviesByplatform,
+  countMoviesBypPlatform,
   updateWatchedMovie,
   deleteMovies,
   updateMovie,

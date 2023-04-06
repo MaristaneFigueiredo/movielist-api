@@ -35,7 +35,18 @@ async function getMovies(): Promise<QueryResult<MovieResponse>>   {
     return await connectionDb.query(query)
 }
 
-async function countMoviesByplatform() {}
+async function countMoviesBypPlatform(): Promise<QueryResult<MovieResponse>> {
+  const query = `        
+      SELECT p.name as Plataform , COUNT(m."plataformId") as Qtde 
+      FROM movies m 
+          INNER JOIN plataforms p ON m."plataformId" = p.id
+      GROUP BY m."plataformId", p.name
+  `; 
+  return await connectionDb.query(query)
+
+}
+
+
 async function updateWatchedMovie() {}
 async function deleteMovies() {}
 async function updateMovie() {}
@@ -43,7 +54,7 @@ async function updateMovie() {}
 export default {
   createMovies,
   getMovies,
-  countMoviesByplatform,
+  countMoviesBypPlatform,
   updateWatchedMovie,
   deleteMovies,
   updateMovie,
