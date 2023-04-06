@@ -8,11 +8,24 @@ async function movieExistPlataform({name, plataformId}:MovieResponse)  {
    const {rows : movies} = await moviesRepository.movieExistPlataform ({name, plataformId} )      
    
    const [movieExistPlataform] = movies
-   console.log('movieExistPlataform', movieExistPlataform)
+  // console.log('movieExistPlataform', movieExistPlataform)
 
    if(movieExistPlataform) {        
          throw genericErros.conflitctError("Movie already exists for this plataform")            
    }        
+}
+
+async function movieExistById(id:number) {
+ 
+  const {rows : movies} = await moviesRepository.movieExistById(id)    
+   
+  const [movieExist] = movies
+ // console.log('movieExist', movieExist)
+
+  if(!movieExist) {        
+        throw genericErros.notFoundError()            
+  }  
+
 }
 
 
@@ -32,8 +45,14 @@ async function countMoviesBypPlatform() {
     
   return movies
 }
+
+async function deleteMovie(id:number) {
+
+  await moviesRepository.deleteMovie(id);
+
+}
 async function updateWatchedMovie() {}
-async function deleteMovies() {}
+
 async function updateMovie() {}
 
 export default {
@@ -41,7 +60,8 @@ export default {
   getMovies,
   countMoviesBypPlatform,
   updateWatchedMovie,
-  deleteMovies,
+  deleteMovie,
   updateMovie,
-  movieExistPlataform
+  movieExistPlataform,
+  movieExistById
 }

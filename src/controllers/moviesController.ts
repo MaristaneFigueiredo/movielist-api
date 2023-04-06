@@ -54,9 +54,15 @@ async function updateWatchedMovie(
     next(error);
   }
 }
-async function deleteMovies(req: Request, res: Response, next: NextFunction) {
+async function deleteMovie(req: Request, res: Response, next: NextFunction) {
+  
+  const id = Number(req.params.id)
+ 
+  
   try {
-    await moviesService.deleteMovies();
+    await moviesService.movieExistById(id)
+    
+    await moviesService.deleteMovie(id);
     res.sendStatus(httpStatus.OK);
   } catch (error) {
     next(error);
@@ -76,6 +82,6 @@ export default {
   getMovies,
   countMoviesBypPlatform,
   updateWatchedMovie,
-  deleteMovies,
+  deleteMovie,
   updateMovie,
 };

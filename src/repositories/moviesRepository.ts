@@ -23,6 +23,13 @@ async function movieExistPlataform({name, plataformId}:MovieResponse) : Promise<
     return await connectionDb.query(query, [name, plataformId]);
 }
 
+async function movieExistById(id:number) : Promise<QueryResult<MovieResponse>> {
+  const query = `
+       SELECT * FROM movies WHERE id = $1      
+   `
+
+    return await connectionDb.query(query, [id]);
+}
 
 async function getMovies(): Promise<QueryResult<MovieResponse>>   { 
 
@@ -47,8 +54,17 @@ async function countMoviesBypPlatform(): Promise<QueryResult<MovieResponse>> {
 }
 
 
+async function deleteMovie(id:number) : Promise<void> {
+  const query = `
+        DELETE from movies WHERE id = $1
+    `;
+
+  await connectionDb.query(query, [id]);
+
+}
+
 async function updateWatchedMovie() {}
-async function deleteMovies() {}
+
 async function updateMovie() {}
 
 export default {
@@ -56,7 +72,8 @@ export default {
   getMovies,
   countMoviesBypPlatform,
   updateWatchedMovie,
-  deleteMovies,
+  deleteMovie,
   updateMovie,
-  movieExistPlataform
+  movieExistPlataform,
+  movieExistById
 };

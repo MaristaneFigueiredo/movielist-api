@@ -9,8 +9,8 @@ moviesRouter
     .post('/',  validationSchema(movieSchema),  moviesController.createMovies)
      .get('/', moviesController.getMovies)
      .get('/countplatforms', moviesController.countMoviesBypPlatform )
-     .patch('/movie-assistido/:id', moviesController.updateWatchedMovie)  
-     .delete('/:id', moviesController.deleteMovies)
+     .delete('/:id', moviesController.deleteMovie)
+     .patch('/movie-assistido/:id', moviesController.updateWatchedMovie)       
      .put('/:id', moviesController.updateMovie)
     
 
